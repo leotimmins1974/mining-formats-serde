@@ -20,6 +20,8 @@ omitted. An error is returned when the document contains no compatible element,
 or when compatible data is malformed and cannot be encoded. Stream order
 follows OMF element order, including elements nested in composites.
 
+**Example Rust Implementation**
+
 ```rust
 use mfsd::format::{obj, omf};
 
@@ -32,6 +34,24 @@ fn obj_to_omf_bytes(input: &[u8]) -> Result<Vec<Vec<u8>>, obj::Error> {
 
     // OMF is a container, so this vector contains exactly one byte stream.
     Ok(omf::serialize(&document))
+}
+```
+
+**Example C# Implementation**
+
+```csharp
+using MFSD;
+
+static byte[][] ObjToOmfBytes(byte[] input)
+{
+    // Deserialize raw OBJ bytes into the in-memory OMF document.
+    using var document = Document.Deserialize(Format.Obj, input);
+
+    // Application logic works only with the OMF representation.
+    Console.WriteLine($"{document.Elements.Count} elements");
+
+    // OMF is a container, so the result contains one byte array.
+    return document.Serialize(Format.Omf);
 }
 ```
 
