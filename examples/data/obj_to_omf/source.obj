@@ -1,0 +1,29 @@
+# MFSD OBJ -> in-memory OMF -> OMF file -> OBJ round-trip example.
+# All coordinates and vertex colours are deliberately easy to inspect.
+
+v 500000 6500000 100 1 0.2 0.1
+v 500010 6500005 101 1 0.6 0.1
+v 500020 6500010 98 0.9 0.7 0.1
+v 500030 6500015 96 0.8 0.8 0.2
+v 500040 6500020 95 0.7 0.9 0.3
+v 500050 6500025 90 0.5 0.3 0.1
+v 500070 6500025 91 0.6 0.35 0.15
+v 500050 6500045 94 0.7 0.4 0.2
+
+vt 0 0
+vt 0.5 0
+vt 1 0
+vt 0 0
+vt 1 0
+vt 0 1
+
+vn 0 -0.1961161351 0.9805806757
+
+o survey_control
+p 1 2
+
+o bench_crest
+l 3/1 4/2 5/3
+
+o pit_face
+f 6/4/1 7/5/1 8/6/1

@@ -1,8 +1,39 @@
 # Mining Formats Serialise Deserialise
 
-An open-source Rust library for serialising and deserialising geospatial file formats. It will provide a stable cross-language application binary interface, enabling the core library to be used through bindings for multiple programming languages, plans are currently limited to: `C#` and `Rust`. 
+MFSD is a Rust library for serialising and deserialising mining and geospatial
+file formats through one common representation based on OMF 2.
 
-By centralising format support within a single high-performance implementation, OreZeta aims to improve interoperability, reduce duplicated development effort, and provide a consistent interface for reading and writing industry data. The project will be released under the MIT License to support broad adoption, modification, and community contribution.
+## How it works
+
+Every format deserializer accepts raw bytes and produces the same in-memory
+`Document`. That document contains the OMF project, elements, geometries,
+attributes, typed arrays, and images. Application code can inspect and process
+it without knowing which file format it originally came from.
+
+Serializers return `ByteStreams`, a `Vec<Vec<u8>>` containing independently
+usable destination streams. A container format returns one stream when it can
+natively hold every compatible element; a single-entity format returns one
+stream per compatible OMF element.
+
+Serialization is best-effort: unsupported elements and fields are silently
+omitted. An error is returned when the document contains no compatible element,
+or when compatible data is malformed and cannot be encoded. Stream order
+follows OMF element order, including elements nested in composites.
+
+```rust
+use mfsd::format::{obj, omf};
+
+fn obj_to_omf_bytes(input: &[u8]) -> Result<Vec<Vec<u8>>, obj::Error> {
+    // Deserialize raw OBJ bytes into the in-memory OMF document.
+    let document = obj::deserialize(input)?;
+
+    // Application logic works only with the OMF representation.
+    println!("{} elements", document.project().elements.len());
+
+    // OMF is a container, so this vector contains exactly one byte stream.
+    Ok(omf::serialize(&document))
+}
+```
 
 ## We'd like our proprietary format supported
 

@@ -4,3 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+las = { version = "0.11.0", features = ["laz"] }
+omf = { git = "https://github.com/gmggroup/omf-rust.git", rev = "64d305790b3415618a01f00a94cd914acd0b80ba" }
+serde_json = "1.0.151"
+thiserror = "2.0.20"
+tiff = "0.11.3"
