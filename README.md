@@ -40,7 +40,7 @@ fn obj_to_omf_bytes(input: &[u8]) -> Result<Vec<Vec<u8>>, obj::Error> {
 **Example C# Implementation**
 
 ```csharp
-using MFSD;
+using Mfsd;
 
 static byte[][] ObjToOmfBytes(byte[] input)
 {
