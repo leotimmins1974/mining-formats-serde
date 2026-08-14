@@ -106,4 +106,4 @@ The licence and permissions granted above survive withdrawal of the support requ
 | Wavefront OBJ | Points, line segments, and triangular meshes (`PointSet`, `LineSet`, and `Surface`) | `.obj` | Yes | Yes |
 | LAS point cloud | Point clouds (`PointSet`) and supported LAS point attributes | `.las` | Yes | Yes |
 | LAZ compressed point cloud | Compressed point clouds (`PointSet`) and supported LAS point attributes | `.laz` | Yes | Yes |
-| Single-band TIFF and GeoTIFF | Height rasters on regular grids (`GridSurface`), with supported georeferencing | `.tif`, `.tiff` | Yes | Yes |
+| TIFF and GeoTIFF | 8-bit and 16-bit grayscale, grayscale-alpha, RGB, and RGBA image textures on flat surfaces, with supported georeferencing | `.tif`, `.tiff` | Yes | Yes |
