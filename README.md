@@ -97,3 +97,13 @@ This licence includes the right to permit employees, contributors, contractors a
 Unless separately agreed in writing before disclosure, Materials submitted under this process must not contain information that you are required to keep confidential, and the Materials will not be treated as confidential by us.
 
 The licence and permissions granted above survive withdrawal of the support request and cannot subsequently be revoked.
+
+## Supported formats
+
+| Format | Content represented in OMF | File extensions | Read | Write |
+| --- | --- | --- | --- | --- |
+| Open Mining Format 2 (OMF) | Complete OMF projects, including all geometry, attributes, arrays, and images | `.omf` | Yes | Yes |
+| Wavefront OBJ | Points, line segments, and triangular meshes (`PointSet`, `LineSet`, and `Surface`) | `.obj` | Yes | Yes |
+| LAS point cloud | Point clouds (`PointSet`) and supported LAS point attributes | `.las` | Yes | Yes |
+| LAZ compressed point cloud | Compressed point clouds (`PointSet`) and supported LAS point attributes | `.laz` | Yes | Yes |
+| Single-band TIFF and GeoTIFF | Height rasters on regular grids (`GridSurface`), with supported georeferencing | `.tif`, `.tiff` | Yes | Yes |
