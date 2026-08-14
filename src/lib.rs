@@ -1,5 +1,7 @@
 //! Serialize and deserialize mining formats through one in-memory OMF representation.
 
+mod ffi;
+
 pub mod format;
 
 pub use format::omf::{Document, Error as OmfError, MemoryReader, MemoryWriter, deserialize as deserialize_omf, serialize as serialize_omf};

@@ -3,6 +3,10 @@ name = "mfsd"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "mfsd"
+crate-type = ["rlib", "cdylib"]
+
 [dependencies]
 las = { version = "0.11.0", features = ["laz"] }
 omf = { git = "https://github.com/gmggroup/omf-rust.git", rev = "64d305790b3415618a01f00a94cd914acd0b80ba" }

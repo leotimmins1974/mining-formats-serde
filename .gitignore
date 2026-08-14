@@ -1,6 +1,10 @@
 # Rust
 /target
 
+# .NET
+**/bin/
+**/obj/
+
 # MacOS
 .DS_Store
 

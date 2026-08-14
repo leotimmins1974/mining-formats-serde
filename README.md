@@ -3,6 +3,8 @@
 MFSD is a Rust library for serialising and deserialising mining and geospatial
 file formats through one common representation based on OMF 2.
 
+Disclaimer: majority of the code in this library is AI generated.
+
 ## How it works
 
 Every format deserializer accepts raw bytes and produces the same in-memory

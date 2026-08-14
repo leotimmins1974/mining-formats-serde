@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>mfsd_dotnet</AssemblyName>
+    <RootNamespace>Mfsd</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RustProjectDirectory>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../..'))</RustProjectDirectory>
+    <RustProfile Condition="'$(Configuration)' == 'Release'">release</RustProfile>
+    <RustProfile Condition="'$(RustProfile)' == ''">debug</RustProfile>
+    <RustReleaseArgument Condition="'$(Configuration)' == 'Release'"> --release</RustReleaseArgument>
+    <NativeLibraryFile Condition="$([MSBuild]::IsOSPlatform('Windows'))">mfsd.dll</NativeLibraryFile>
+    <NativeLibraryFile Condition="$([MSBuild]::IsOSPlatform('Linux'))">libmfsd.so</NativeLibraryFile>
+    <NativeLibraryFile Condition="$([MSBuild]::IsOSPlatform('OSX'))">libmfsd.dylib</NativeLibraryFile>
+    <NativeLibraryPath>$(RustProjectDirectory)/target/$(RustProfile)/$(NativeLibraryFile)</NativeLibraryPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(NativeLibraryPath)"
+          Link="$(NativeLibraryFile)"
+          CopyToOutputDirectory="PreserveNewest"
+          CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="BuildRustNativeLibrary" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(NativeLibraryFile)' == ''" Text="MFSD does not support the current host operating system." />
+    <Exec WorkingDirectory="$(RustProjectDirectory)" Command="cargo build$(RustReleaseArgument)" />
+  </Target>
+
+</Project>
