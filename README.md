@@ -66,12 +66,13 @@ from mfsd import Document, Format
 
 def obj_to_omf_bytes(input: bytes) -> list[bytes]:
     # Deserialize raw OBJ bytes into the in-memory OMF document.
-    with Document.deserialize(Format.OBJ, input) as document:
-        # Application logic works only with the OMF representation.
-        print(f"{len(document.elements)} elements")
+    document = Document.deserialize(Format.OBJ, input)
+    
+    # Application logic works only with the OMF representation.
+    print(f"{len(document.elements)} elements")
 
-        # OMF is a container, so the result contains one byte string.
-        return document.serialize(Format.OMF)
+    # OMF is a container, so the result contains one byte string.
+    return document.serialize(Format.OMF)
 ```
 
 The Python package can be installed from the repository root with
