@@ -5,6 +5,12 @@
 **/bin/
 **/obj/
 
+# Python
+__pycache__/
+*.egg-info/
+/.venv/
+/build/
+
 # MacOS
 .DS_Store
 

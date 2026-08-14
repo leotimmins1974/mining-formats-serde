@@ -1,7 +1,8 @@
 # Mining Formats Serialise Deserialise
 
 MFSD is a Rust library for serialising and deserialising mining and geospatial
-file formats through one common representation based on OMF 2.
+file formats through one common representation based on OMF 2. C# and Python
+bindings provide the same conversion API on top of the Rust core.
 
 Disclaimer: majority of the code in this library is AI generated.
 
@@ -56,6 +57,27 @@ static byte[][] ObjToOmfBytes(byte[] input)
     return document.Serialize(Format.Omf);
 }
 ```
+
+**Example Python Implementation**
+
+```python
+from mfsd import Document, Format
+
+
+def obj_to_omf_bytes(input: bytes) -> list[bytes]:
+    # Deserialize raw OBJ bytes into the in-memory OMF document.
+    with Document.deserialize(Format.OBJ, input) as document:
+        # Application logic works only with the OMF representation.
+        print(f"{len(document.elements)} elements")
+
+        # OMF is a container, so the result contains one byte string.
+        return document.serialize(Format.OMF)
+```
+
+The Python package can be installed from the repository root with
+`python -m pip install .`. Building it requires Cargo and a Rust toolchain; the
+resulting package includes the native MFSD library and has no third-party
+runtime dependencies.
 
 ## We'd like our proprietary format supported
 
